@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Virtual Office v0.3</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar left">
+      <div class="brand">
+        <div class="logo">+m</div>
+        <div>
+          <h1>Virtual Office</h1>
+          <p>Prototype v0.3 · stabilisierte Calls</p>
+        </div>
+      </div>
+
+      <section class="panel">
+        <h2>Meine Präsenz</h2>
+        <label class="field">
+          <span>Name</span>
+          <input id="displayName" type="text" value="Michael" maxlength="32" />
+        </label>
+        <label class="field">
+          <span>Bild-URL</span>
+          <input id="avatarUrl" type="text" placeholder="https://..." />
+        </label>
+        <label class="field">
+          <span>Status</span>
+          <select id="presenceStatus">
+            <option value="anwesend">anwesend</option>
+            <option value="snooze">snooze</option>
+            <option value="im Gespräch">im Gespräch</option>
+            <option value="abwesend">abwesend</option>
+          </select>
+        </label>
+        <div class="button-row two-col">
+          <button id="updateProfileBtn" class="btn primary">Aktualisieren</button>
+          <button id="enterLeaveBtn" class="btn">Raum verlassen</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Räume</h2>
+        <div id="roomList" class="room-list"></div>
+        <div class="room-create">
+          <input id="newRoomName" type="text" placeholder="Neuer Projektraum" />
+          <button id="addRoomBtn" class="btn">Anlegen</button>
+        </div>
+      </section>
+
+      <section class="panel compact">
+        <h2>Legende</h2>
+        <div class="legend-item"><span class="dot present"></span> anwesend</div>
+        <div class="legend-item"><span class="dot snooze"></span> snooze</div>
+        <div class="legend-item"><span class="dot talking"></span> im Gespräch</div>
+        <div class="legend-item"><span class="dot away"></span> abwesend</div>
+      </section>
+    </aside>
+
+    <main class="main-stage">
+      <header class="topbar">
+        <div>
+          <h2 id="currentRoomTitle">Hauptraum</h2>
+          <p id="currentRoomMeta">Realtime-Präsenz, Chat und Anrufe</p>
+        </div>
+        <div class="topbar-actions">
+          <span id="connectionBadge" class="badge online">verbunden</span>
+        </div>
+      </header>
+
+      <section id="officeCanvas" class="office-canvas"></section>
+
+      <footer class="statusbar">
+        <div id="whoWhereText">Alle Räume im Blick</div>
+        <div id="lastActionText">Bereit</div>
+      </footer>
+    </main>
+
+    <aside class="sidebar right">
+      <section class="panel">
+        <h2>Raumübersicht</h2>
+        <div id="occupancyOverview" class="occupancy-overview"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Gruppenchat</h2>
+        <div id="chatMessages" class="chat-messages"></div>
+        <div class="chat-compose">
+          <input id="chatInput" type="text" placeholder="Nachricht an alle im Raum" />
+          <button id="sendChatBtn" class="btn primary">Senden</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Gespräch</h2>
+        <div id="callPanel" class="call-panel empty">Kein aktives Gespräch</div>
+      </section>
+    </aside>
+  </div>
+
+  <template id="personTemplate">
+    <div class="person-card">
+      <div class="avatar-wrap">
+        <img class="avatar" src="" alt="Avatar" />
+        <span class="status-badge"></span>
+      </div>
+      <div class="person-meta">
+        <strong class="person-name"></strong>
+        <small class="person-sub"></small>
+      </div>
+      <button class="call-btn">Anrufen</button>
+    </div>
+  </template>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
