@@ -1,6 +1,6 @@
 {
-  "name": "virtual-office-v0-3",
-  "version": "0.3.0",
+  "name": "virtual-office-v0-3-1",
+  "version": "0.3.1",
   "private": true,
   "description": "Virtual Office v0.3 with realtime presence, room chat and browser audio/video calls.",
   "main": "server.js",
@@ -11,5 +11,8 @@
   "dependencies": {
     "express": "^4.19.2",
     "socket.io": "^4.8.1"
+  },
+  "engines": {
+    "node": "20.x"
   }
 }
